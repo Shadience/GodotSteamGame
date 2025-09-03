@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ca0261dna4o4t"]
+[gd_scene load_steps=9 format=3 uid="uid://bt8wa57orb40q"]
 
 [ext_resource type="Script" uid="uid://bkv8dd20umx0o" path="res://character_body_3d.gd" id="1_bemqg"]
+[ext_resource type="Script" uid="uid://coq1m8d6lxwaw" path="res://main_3d.gd" id="1_qvgen"]
+[ext_resource type="Script" uid="uid://bj0ogdiihnumv" path="res://camera_3d.gd" id="2_tgwim"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tgwim"]
 
@@ -14,6 +16,7 @@ size = Vector3(1.99979, 0.0458374, 2.00046)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_m1abp"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_qvgen")
 
 [node name="кубик" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.578447, -4.73042)
@@ -45,3 +48,4 @@ skeleton = NodePath("../..")
 
 [node name="смотреть камера" type="Camera3D" parent="CharacterBody3D/чувак"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.526517, 0)
+script = ExtResource("2_tgwim")
