@@ -1,36 +1,24 @@
 extends CharacterBody3D
 
-const SPEED := 5.0
-const JUMP_VELOCITY := 4.5
-@export var sens := 0.01
-var _hp := 100
-var nickname := "Pidoras"
+@export var speed = 6.0
+@export var jump_vel = 4.5
+@onready var main_cam: Camera3D = $Camera3D
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jump_vel
+	
 	var input_dir := Input.get_vector("left", "right", "up", "down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var dir := input_dir.rotated(-main_cam.rotation.y)
+	var direction = Vector3(dir.x, 0, dir.y)
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 
 	move_and_slide()
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		rotation.x -= event.relative.y * sens
-		rotation_degrees.x = clamp(rotation_degrees.x, -90.0, 30.0)
-		rotation.y -= event.relative.x * sens
-
-func damage(val: int):
-	_hp -= val
-	if _hp <= 0:
-		queue_free()
