@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var speed = 6.0
 @export var jump_vel = 4.5
-@onready var main_cam: Camera3D = $Camera3D
+@onready var main_cam: Camera3D = $"чувак/смотреть камера"
 
 func _process(delta: float) -> void:
 	if not is_on_floor():
