@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ca0261dna4o4t"]
+[gd_scene load_steps=8 format=3 uid="uid://ca0261dna4o4t"]
 
 [ext_resource type="Script" uid="uid://coq1m8d6lxwaw" path="res://main_3d.gd" id="1_qvgen"]
-[ext_resource type="PackedScene" uid="uid://hy110hxaxkje" path="res://player.tscn" id="2_tgwim"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tgwim"]
 
@@ -9,6 +8,17 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hntau"]
 size = Vector3(1.99979, 0.0458374, 2.00046)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tgwim"]
+
+[sub_resource type="Sky" id="Sky_qvgen"]
+sky_material = SubResource("ProceduralSkyMaterial_tgwim")
+
+[sub_resource type="Environment" id="Environment_hntau"]
+background_mode = 2
+background_energy_multiplier = 1.16
+sky = SubResource("Sky_qvgen")
+ambient_light_color = Color(0.646748, 0.604054, 0.627404, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_qvgen")
@@ -30,12 +40,12 @@ shape = SubResource("BoxShape3D_hntau")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.42914, 0.903238, 0, -0.903238, 0.42914, 0, 13.9674, 0.180471)
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("2_tgwim")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0458527, 0.935226, 0.0346224)
-
 [node name="Players" type="Node" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://hy110hxaxkje")
 spawn_path = NodePath("../Players")
 spawn_limit = 4
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hntau")
