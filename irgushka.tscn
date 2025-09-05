@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ca0261dna4o4t"]
+[gd_scene load_steps=6 format=3 uid="uid://ca0261dna4o4t"]
 
-[ext_resource type="Script" uid="uid://bkv8dd20umx0o" path="res://character_body_3d.gd" id="1_bemqg"]
-[ext_resource type="Script" path="res://main_3d.gd" id="1_qvgen"]
-[ext_resource type="Script" path="res://camera_3d.gd" id="2_tgwim"]
+[ext_resource type="Script" uid="uid://coq1m8d6lxwaw" path="res://main_3d.gd" id="1_qvgen"]
+[ext_resource type="PackedScene" uid="uid://hy110hxaxkje" path="res://player.tscn" id="2_tgwim"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tgwim"]
 
@@ -10,10 +9,6 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hntau"]
 size = Vector3(1.99979, 0.0458374, 2.00046)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bemqg"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_m1abp"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_qvgen")
@@ -35,17 +30,5 @@ shape = SubResource("BoxShape3D_hntau")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.42914, 0.903238, 0, -0.903238, 0.42914, 0, 13.9674, 0.180471)
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_tgwim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0458527, 0.935226, 0.0346224)
-script = ExtResource("1_bemqg")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("CapsuleShape3D_bemqg")
-
-[node name="чувак" type="MeshInstance3D" parent="CharacterBody3D"]
-mesh = SubResource("CapsuleMesh_m1abp")
-skeleton = NodePath("../..")
-
-[node name="смотреть камера" type="Camera3D" parent="CharacterBody3D/чувак"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.526517, 0)
-script = ExtResource("2_tgwim")

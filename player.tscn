@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://hy110hxaxkje"]
+
+[ext_resource type="Script" uid="uid://bkv8dd20umx0o" path="res://character_body_3d.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://bj0ogdiihnumv" path="res://camera_3d.gd" id="2_i3pqv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bemqg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_m1abp"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bemqg")
+
+[node name="чувак" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_m1abp")
+skeleton = NodePath("../..")
+
+[node name="смотреть камера" type="Camera3D" parent="чувак"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.526517, 0)
+script = ExtResource("2_i3pqv")
