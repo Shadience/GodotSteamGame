@@ -32,3 +32,10 @@ transform = Transform3D(1, 0, 0, 0, 0.42914, 0.903238, 0, -0.903238, 0.42914, 0,
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("2_tgwim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0458527, 0.935226, 0.0346224)
+
+[node name="Players" type="Node" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://hy110hxaxkje")
+spawn_path = NodePath("../Players")
+spawn_limit = 4
