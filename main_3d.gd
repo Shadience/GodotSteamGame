@@ -29,6 +29,7 @@ func lc(connec, lobby_id):
 func lj(lobby, perms, locked, resp):
 	spawner.spawn(steam_id)
 	set_multiplayer_authority(steam_id, true)
+	print("PRIKOL")
 
 func _spawn_player(id):
 	var p = load(spawner.get_spawnable_scene(0)).instantiate()
