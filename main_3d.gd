@@ -2,7 +2,6 @@ extends Node3D
 
 var captured = true;
 
-var n = 0
 var steam_id = 0
 var peer := SteamMultiplayerPeer.new()
 @onready var spawner: MultiplayerSpawner = $MultiplayerSpawner
@@ -21,9 +20,9 @@ func _ready():
 		peer.create_host()
 	else:
 		peer.create_client(steam_id)
+	multiplayer.multiplayer_peer = peer
 
 func lc(connec, lobby_id):
-	multiplayer.multiplayer_peer = peer
 	Steam.allowP2PPacketRelay(true)
 
 func lj(lobby, perms, locked, resp):
@@ -34,7 +33,6 @@ func lj(lobby, perms, locked, resp):
 func _spawn_player(id):
 	var p = load(spawner.get_spawnable_scene(0)).instantiate()
 	p.set_multiplayer_authority(id)
-	#n += 1
 	return p
 
 func _unhandled_input(event: InputEvent):
