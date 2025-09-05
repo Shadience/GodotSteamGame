@@ -19,6 +19,8 @@ func _ready():
 	if Steam.getPersonaName() == "абдвг1848":
 		Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, 4)
 		peer.create_host()
+	else:
+		peer.create_client(steam_id)
 
 func lc(connec, lobby_id):
 	multiplayer.multiplayer_peer = peer
