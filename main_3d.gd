@@ -12,6 +12,9 @@ func _ready():
 	steam_id = Steam.getSteamID()
 	Steam.lobby_created.connect(lc)
 	Steam.lobby_joined.connect(lj)
+	Steam.join_requested.connect(jr)
+	Steam.join_game_requested.connect(jr)
+	
 	spawner.spawn_function = _spawn_player
 	
 	if Steam.getPersonaName() == "абдвг1848":
@@ -23,11 +26,12 @@ func lc(connec, lobby_id):
 	multiplayer.multiplayer_peer = peer
 
 func lj(lobby, perms, locked, resp):
+	print("PRIKOL")
 	spawner.spawn(steam_id)
 	set_multiplayer_authority(steam_id, true)
-	print("PRIKOL")
 
 func jr(lobby, id):
+	print("PRIKOL2")
 	Steam.joinLobby(lobby)
 	peer.create_client(id)
 	peer.connect_to_lobby(lobby)
