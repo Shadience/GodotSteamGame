@@ -27,8 +27,8 @@ func lc(connec, lobby_id):
 
 func lj(lobby, perms, locked, resp):
 	print("PRIKOL")
-	spawner.spawn(steam_id)
-	set_multiplayer_authority(steam_id, true)
+	var p = spawner.spawn(steam_id)
+	p.set_multiplayer_authority(steam_id, true)
 
 func jr(lobby, id):
 	print("PRIKOL2")
